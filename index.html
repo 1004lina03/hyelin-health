@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>고지혈증 사라져라 💖</title>
+<style>
+:root{
+  --pink:#ff8fb1; --pink2:#ffd7e3; --cream:#fffaf5; --mint:#bdeee2;
+  --yellow:#ffe99a; --purple:#cdbdff; --text:#51434a; --white:#fff;
+}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(135deg,#fff7fb,#f8f5ff);font-family:"Noto Sans KR",system-ui,sans-serif;color:var(--text)}
+button,input{font:inherit}
+.app{max-width:1050px;margin:auto;padding:24px 18px 50px}
+.hero{background:linear-gradient(135deg,#ffb5c9,#cbbcff);border:4px solid #fff;border-radius:30px;padding:24px;text-align:center;box-shadow:0 10px 30px #c9b8c955;position:relative;overflow:hidden}
+.hero h1{margin:0;font-size:clamp(30px,6vw,54px);color:#fff;text-shadow:3px 3px 0 #c77896}
+.hero p{margin:8px 0 0;color:#fff;font-weight:800}
+.tabs{display:flex;gap:10px;margin:18px 0;flex-wrap:wrap}
+.tab{flex:1;min-width:130px;border:0;border-radius:18px;padding:14px;background:#fff;box-shadow:0 5px 15px #00000010;color:#8a6874;font-weight:900;cursor:pointer}
+.tab.active{background:var(--pink);color:#fff;transform:translateY(-2px)}
+.panel{display:none}.panel.active{display:block}
+.card{background:#fff;border-radius:25px;padding:24px;margin:14px 0;box-shadow:0 8px 25px #0000000c;border:2px solid #f6e5eb}
+h2{margin-top:0;color:#c25e80}
+.rule{background:#fff8d9;border-radius:20px;padding:18px;margin:14px 0;border:2px dashed #f0ce63;font-weight:800;line-height:1.7}
+.foods{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+.food{background:#fff1f5;border-radius:18px;padding:12px 16px;font-weight:900}
+.goal{font-size:22px;text-align:center;background:#eafff9;border:2px solid #a7dfd2;border-radius:20px;padding:18px;font-weight:900}
+.step{display:none}.step.active{display:block}
+.question{font-size:24px;font-weight:900;margin-bottom:18px}
+.choice{display:flex;gap:12px}.choice button,.next,.back{border:0;border-radius:18px;padding:14px 24px;font-weight:900;cursor:pointer}
+.yes{background:#ffd0dc}.no{background:#c9f1e6}.next{background:#bfb0ff;color:#fff}.back{background:#eee;color:#666}
+input[type=text]{width:100%;padding:16px;border:2px solid #ead9df;border-radius:16px;outline:none}
+.result{text-align:center;padding:35px 15px}
+.result .big{font-size:72px}.result h2{font-size:32px}
+.praise{background:#eafff5}.scold{background:#fff0f4}
+.praise p,.scold p{font-size:18px;font-weight:800;line-height:1.8}
+.calendar-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.month{background:#fff;border-radius:22px;padding:15px;box-shadow:0 6px 20px #0000000c;border:2px solid #f1e3e8}
+.month h3{text-align:center;margin:4px 0 10px;color:#b65d7a}
+.week,.days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.week span{font-size:11px;font-weight:900;color:#a88f99}
+.day{min-height:31px;border-radius:8px;padding:5px 2px;font-size:11px;background:#faf8f9;cursor:pointer}
+.day.recorded{background:#ffd6e1}.day.clean{background:#c9f1e6}.day.empty{background:transparent}
+.month-summary{margin-top:10px;background:#fff7d9;border-radius:15px;padding:10px;text-align:center;font-weight:900}
+.ring{width:76px;height:76px;border-radius:50%;margin:8px auto;background:conic-gradient(var(--pink) calc(var(--pct)*1%), #eee calc(var(--pct)*1%));display:grid;place-items:center}
+.ring:after{content:"";width:52px;height:52px;background:white;border-radius:50%}
+.legend{font-size:12px;color:#8a747d;text-align:center;margin-top:8px}
+.small{font-size:12px;color:#967e87}
+.reset{border:0;background:#eee;border-radius:12px;padding:8px 12px;cursor:pointer}
+@media(max-width:600px){.app{padding:12px}.card{padding:18px}.question{font-size:20px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="hero">
+    <h1>💖 고지혈증 사라져라 💖</h1>
+    <p>6개월 동안 하루하루 귀엽게 고삐 잡기 🐴✨</p>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="remember">🌷 명심하기</button>
+    <button class="tab" data-tab="record">📝 기록하기</button>
+    <button class="tab" data-tab="calendar">🗓️ 한눈에 보기</button>
+  </nav>
+
+  <section id="remember" class="panel active">
+    <div class="card">
+      <h2>🌟 딱 두 가지만 명심하기!</h2>
+      <div class="rule">1. 하루 0개 먹기 대신 참기 힘들 땐 <b>하루 1개만 먹기</b> 🍰</div>
+      <div class="rule">2. 1개를 못 참고 먹었을 시 또 먹고 싶은 욕망 참고 <b>안 먹기</b> 🛑🍩</div>
+      <div class="goal">🎯 6개월 뒤 <b>-5kg</b>!<br>혜린아 우리 천천히, 꾸준히 가자 💪💗</div>
+      <div class="foods">
+        <div class="food">🍰 케이크</div>
+        <div class="food">🍩 도넛</div>
+        <div class="food">🍦 아이스크림</div>
+        <div class="food">🍪 간식 유혹</div>
+      </div>
+      <p class="small">※ 이 페이지는 기록과 습관 관리를 위한 개인용 체크리스트입니다.</p>
+    </div>
+  </section>
+
+  <section id="record" class="panel">
+    <div class="card">
+      <div id="step1" class="step active">
+        <div class="question">1. 군것질을 하였나요? 🍰🍩🍦</div>
+        <div class="choice">
+          <button class="yes" onclick="answerYes()">예 😭</button>
+          <button class="no" onclick="answerNo()">아니요 😇</button>
+        </div>
+      </div>
+
+      <div id="step2" class="step">
+        <div class="question">2. 무엇을 먹었나요? 🍴</div>
+        <input id="what" type="text" placeholder="예: 케이크 1조각, 도넛 1개">
+        <br><br><button class="next" onclick="toStep3()">다음 →</button>
+      </div>
+
+      <div id="step3" class="step">
+        <div class="question">3. 얼마나 먹었나요? 📏</div>
+        <input id="howmuch" type="text" placeholder="예: 1개, 반 조각, 200g">
+        <br><br><button class="next" onclick="finishBad()">기록 완료</button>
+      </div>
+
+      <div id="praise" class="step result praise">
+        <div class="big">🎉🥳💖</div>
+        <h2>잘 했어 혜린아!</h2>
+        <p>오늘 진짜 잘했어! 👏<br>
+        유혹을 이겨낸 것도 대단하고, 기록하러 온 것 자체가 이미 멋진 습관이야. 🌷<br>
+        오늘의 작은 성공이 6개월 뒤의 나를 만든다! 💪✨<br>
+        <b>고삐 아주 꽉 잡았다! 🐴💗</b></p>
+        <button class="next" onclick="resetToday()">오늘 기록 다시 하기</button>
+      </div>
+
+      <div id="scold" class="step result scold">
+        <div class="big">😤🍰👉🚫</div>
+        <h2>분발해 혜린아! 아프고 싶어? 😤</h2>
+        <p>한 번 먹었다고 오늘을 포기하면 안 돼!<br>
+        이미 먹은 건 여기서 끝. <b>추가 군것질은 STOP!</b> 🛑<br>
+        자책은 금지하고, 다음 선택부터 다시 잘하면 돼. 💪<br>
+        <b>오늘의 고삐는 지금부터 다시 잡는다! 🐴✨</b></p>
+        <button class="next" onclick="resetToday()">오늘 기록 다시 하기</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="calendar" class="panel">
+    <div class="card">
+      <h2>🗓️ 2026.10 ~ 2027.03</h2>
+      <p>날짜를 누르면 그날 기록을 확인할 수 있어요. 💗</p>
+      <div id="calendarGrid" class="calendar-grid"></div>
+      <p class="legend">💗 고삐 풀린 날 = 군것질을 기록한 날 · 🩵 잘 지킨 날 = 군것질을 안 한 날</p>
+    </div>
+  </section>
+</div>
+
+<script>
+const KEY='lipid6m_records_v1';
+let records=JSON.parse(localStorage.getItem(KEY)||'{}');
+
+function save(){localStorage.setItem(KEY,JSON.stringify(records)); renderCalendar();}
+function todayKey(){const d=new Date();return d.toISOString().slice(0,10)}
+
+document.querySelectorAll('.tab').forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+    btn.classList.add('active'); document.getElementById(btn.dataset.tab).classList.add('active');
+    if(btn.dataset.tab==='calendar') renderCalendar();
+  }
+});
+
+function show(id){document.querySelectorAll('.step').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active')}
+function answerYes(){show('step2')}
+function answerNo(){
+  records[todayKey()]={snack:false,what:'',howmuch:''};save();show('praise')
+}
+function toStep3(){
+  const v=document.getElementById('what').value.trim();
+  if(!v){alert('무엇을 먹었는지 적어줘! 🥺');return} show('step3')
+}
+function finishBad(){
+  const what=document.getElementById('what').value.trim(), how=document.getElementById('howmuch').value.trim();
+  if(!how){alert('얼마나 먹었는지 적어줘! 🥺');return}
+  records[todayKey()]={snack:true,what,howmuch:how};save();show('scold')
+}
+function resetToday(){document.getElementById('what').value='';document.getElementById('howmuch').value='';show('step1')}
+
+function renderCalendar(){
+  const grid=document.getElementById('calendarGrid'); grid.innerHTML='';
+  const start=new Date(2026,9,1);
+  for(let i=0;i<6;i++){
+    const dt=new Date(2026,9+i,1), y=dt.getFullYear(), m=dt.getMonth();
+    const box=document.createElement('div');box.className='month';
+    const title=document.createElement('h3');title.textContent=`${y}년 ${m+1}월`;box.appendChild(title);
+    const week=document.createElement('div');week.className='week';
+    ['일','월','화','수','목','금','토'].forEach(x=>{const s=document.createElement('span');s.textContent=x;week.appendChild(s)});box.appendChild(week);
+    const days=document.createElement('div');days.className='days';
+    const first=new Date(y,m,1).getDay(), last=new Date(y,m+1,0).getDate();
+    for(let j=0;j<first;j++){const e=document.createElement('div');e.className='day empty';days.appendChild(e)}
+    let snackDays=0, recordedDays=0;
+    for(let d=1;d<=last;d++){
+      const key=`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const cell=document.createElement('div');cell.className='day';cell.textContent=d;
+      if(records[key]){
+        recordedDays++;
+        cell.classList.add(records[key].snack?'recorded':'clean');
+        cell.title=records[key].snack ? `${records[key].what} / ${records[key].howmuch}` : '군것질 안 함 💖';
+        if(records[key].snack) snackDays++;
+      }
+      cell.onclick=()=>{
+        if(records[key]) alert(records[key].snack ? `🍰 ${key}\\n먹은 것: ${records[key].what}\\n양: ${records[key].howmuch}` : `🩵 ${key}\\n오늘은 군것질을 안 했어요!`);
+        else alert(`${key}\\n아직 기록이 없어요. 기록하기 탭에서 오늘의 체크를 해주세요!`);
+      };
+      days.appendChild(cell);
+    }
+    box.appendChild(days);
+    const summary=document.createElement('div');summary.className='month-summary';
+    const pct=last?Math.round(snackDays/last*100):0;
+    summary.innerHTML=`이번 달 고삐 풀린 날 🐴💨<br><b style="font-size:22px">${snackDays}일</b> / ${last}일
+      <div class="ring" style="--pct:${pct}"></div>
+      <div class="small">${pct}% · 기록된 군것질 일수 기준</div>`;
+    box.appendChild(summary);grid.appendChild(box);
+  }
+}
+renderCalendar();
+</script>
+</body>
+</html>
